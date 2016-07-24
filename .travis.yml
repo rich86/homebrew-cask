@@ -10,6 +10,10 @@ env:
 
 matrix:
   include:
+    - env: OSX=10.11 HOMEBREW_RUBY=2.2.1 HOMEBREW_OSX_VERSION=$OSX
+      os: osx
+      osx_image: xcode8
+      rvm: system
     - env: OSX=10.11 HOMEBREW_RUBY=2.0.0 HOMEBREW_OSX_VERSION=$OSX
       os: osx
       osx_image: xcode7.3
@@ -42,16 +46,3 @@ script:
 
 notifications:
   email: false
-  irc:
-    channels:
-      - "chat.freenode.net#homebrew-cask"
-    template:
-      - "(%{repository_name}) %{build_number}: %{branch}@%{commit} %{author} -> %{message} %{build_url}"
-    use_notice: true
-    skip_join: true
-  webhooks:
-    urls:
-      - "https://webhooks.gitter.im/e/712d699360b239db14a5"
-    on_success: change
-    on_failure: always
-    on_start: never
